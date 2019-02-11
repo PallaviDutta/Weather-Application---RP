@@ -9,10 +9,11 @@
 	
 
 	<style>
-  .label1 {
-     display: inline-block;
-     width: 1px;
-}
+/*.column {
+	float: left;
+  width: 10%;
+  padding: 10%;
+}*/
 	</style>
 
 </head>
@@ -83,20 +84,22 @@
 <div class="container-fluid text-center bg-grey">
 <div class="row text-center">
 <div class="col-sm-12">
-	<h1 id="Temp"><strong>26' C </strong>
-  <img src="img/sunny.png">
-  </h1>
+			<h1>
+			<span id="Temp">26</span>
+		    <span>&#8451</span>
+		    <span><img src="img/sunny.png"></span>
+		    </h1>
 	<div class="col-sm-6">
 		<p>Graph-time-dependent</p>
 	</div>
 	<div class="col-sm-6" style="padding-left: 10%;">
   <div class="col-sm-3">
      <p><strong>Pressure</strong></p>
-    <p id="Pressure">1013</p>
+     <span id="Pressure">1013</span><span> hpa</span>
   </div>
   <div class="col-sm-3">
      <p><strong>Humidity</strong></p>
-    <p id="Humidity">93</p>
+    <span id="Humidity">93</span><span> %</span>
   </div>
    
 	</div>
@@ -111,11 +114,11 @@
 	<div class="col-sm-6">
       <div class="col-sm-3">
      <p><strong>Sunrise</strong></p>
-    <p id="SunriseTime">1013</p>
+    <p id="Sunrise">1013</p>
   </div>
   <div class="col-sm-3">
      <p><strong>Sunset</strong></p>
-    <p id="SunsetTime">93</p>
+    <p id="Sunset">93</p>
   </div>
 	</div>
 	<div class="col-sm-6">
@@ -147,6 +150,7 @@ $.ajax({
       // dataType: 'json',
       success: function(result){
         // $('#result').html(res)
+        console.log(result)
         console.log(result.main)
         console.log(result.main.humidity)
 
@@ -155,6 +159,8 @@ $.ajax({
         $("#Humidity").text(result.main.humidity)
         $("#Mintemp").text(result.main.temp_min)
         $("#Maxtemp").text(result.main.temp_max)
+        $("#Sunrise").text(result.sys.sunrise)
+        $("Sunset").text(result.sys.sunset)
 
       }
   })
