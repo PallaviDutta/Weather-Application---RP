@@ -18,9 +18,8 @@
 <div class="jumbotron text-center">
   <form class="form-inline">
     <div class="input-group">
-      <i class="fa fa-user icon"></i>
-      <input type="email" class="form-control" size="50" placeholder="Email Address" required>
-      <div class="input-group-btn">
+      <input type="text" class="form-control" size="50" placeholder="Enter Location" required>
+      <div class="input-group-btn" autocomplete="on">
         <button type="button" class="btn"><span class="glyphicon glyphicon-search"></span></button>
       </div>
     </div>
@@ -107,6 +106,30 @@
 </div>
 </div>
 
+
+<div class="container">
+<div id="result" style="color:red">
+	<p>Json data</p>
+</div>
+</div>
+
+
+<script>
+
+$(document).ready(function(){
+
+   $.ajax({
+            url: "http://api.openweathermap.org/data/2.5/weather?q=Mumbai&APPID=f28e3325378a88306afe2af4f9631615",
+            type: 'GET',
+            dataType: 'json',
+            success: function(res) {
+               $('#result').html(res)
+            }
+        });
+
+})
+
+</script>
 
 
 </body>
