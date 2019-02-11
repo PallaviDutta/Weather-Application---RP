@@ -14,16 +14,39 @@
   width: 10%;
   padding: 10%;
 }*/
+
+.flex-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.flex-container > div {
+  background-color: #fff;
+  width: 100px;
+  text-align: center;
+  line-height: 40px;
+  font-size: 15px;
+}
+
+.padding1{
+	padding: 5%;
+}
+.padding2{
+	margin-right: 5%;
+}
+p { margin-top: -20px; }
+
+
 	</style>
 
 </head>
 <body>
 
 
-<div class="jumbotron text-center">
+<div class="padding1 text-center">
   <form class="form-inline">
     <div class="input-group">
-      <i class="fa fa-user icon"></i>
       <input type="name" class="form-control CityTextBox" size="50" placeholder="Enter City" required>
       <div class="input-group-btn">
         <button type="button" class="btn SubmitBtn"><span class="glyphicon glyphicon-search"></span></button>
@@ -32,53 +55,40 @@
   </form>
 </div>
 
-<div class="container-fluid text-center bg-grey">
-<div class="row text-center">
-<div class="col-sm-1"></div>
-<div class="col-sm-2">
-  <div class="thumbnail">
+<div class="flex-container">
+  <div class="padding2">
     <p><strong>Fri</strong></p>
-    <p>28' 19'</p>
-    <img src="img/sunny.png">
+    <p><span>28</span><span>&#xb0</span><span > 19</span><span>&#xb0</span></p>
+    <p><img src="img/sunny.png"></p>
     <p>Sunny</p>
   </div>
-</div>
-<div class="col-sm-2">
-  <div class="thumbnail">
-    <p><strong>Sat</strong></p>
-    <p>29' 21'</p>
-    <img src="img/sunny.png">
+  <div class="padding2">
+  	<p><strong>Sat</strong></p>
+    <p><span>29</span><span>&#xb0</span><span > 21</span><span>&#xb0</span></p>
+    <p><img src="img/sunny.png"></p>
     <p>Sunny</p>
   </div>
-</div>
-<div class="col-sm-2">
-  <div class="thumbnail">
-    <p><strong>Sun</strong></p>
-    <p>29' 21'</p>
-    <img src="img/cloudy.png">
+  <div class="padding2">
+  	<p><strong>Sun</strong></p>
+    <p><span>29</span><span>&#xb0</span><span > 21</span><span>&#xb0</span></p>
+    <p><img src="img/cloudy.png"></p>
     <p>Cloudy</p>
-  </div>
-</div>
-  <div class="col-sm-2">
-  <div class="thumbnail">
-    <p><strong>Mon</strong></p>
-    <p>30' 20'</p>
-    <img src="img/sunny.png">
+  </div>  
+  <div class="padding2">
+  	<p><strong>Mon</strong></p>
+    <p><span>30</span><span>&#xb0</span><span > 20</span><span>&#xb0</span></p>
+    <p><img src="img/sunny.png"></p>
     <p>Sunny</p>
   </div>
-</div>
-  <div class="col-sm-2">
-  <div class="thumbnail">
-    <p><strong>Tue</strong></p>
-    <p>31' 20</p>
-    <img src="img/rain.png">
+  <div class="padding2">
+  	<p><strong>Tue</strong></p>
+    <p><span>31</span><span>&#xb0</span><span > 2</span><span>&#xb0</span></p>
+    <p><img src="img/rain.png"></p>
     <p>Rain</p>
   </div>
 </div>
- <div class="col-sm-1"></div>
-</div>
-</div>
 
+<br><br>
 
 
 <div class="container-fluid text-center bg-grey">
@@ -88,7 +98,7 @@
 			<span id="Temp">26</span>
 		    <span>&#8451</span>
 		    <span><img src="img/sunny.png"></span>
-		    </h1>
+		    </h1><br><br><br>
 	<div class="col-sm-6">
 		<p>Graph-time-dependent</p>
 	</div>
@@ -114,11 +124,11 @@
 	<div class="col-sm-6">
       <div class="col-sm-3">
      <p><strong>Sunrise</strong></p>
-    <p id="Sunrise">1013</p>
+    <span id="Sunrise">7:22</span><span>am</span>
   </div>
   <div class="col-sm-3">
      <p><strong>Sunset</strong></p>
-    <p id="Sunset">93</p>
+     <span id="Sunset">6:12</span><span>pm</span>
   </div>
 	</div>
 	<div class="col-sm-6">
@@ -153,6 +163,7 @@ $.ajax({
         console.log(result)
         console.log(result.main)
         console.log(result.main.humidity)
+
 
         $("#Temp").text(result.main.temp)
         $("#Pressure").text(result.main.pressure)
