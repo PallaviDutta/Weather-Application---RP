@@ -5,10 +5,14 @@
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+	
+	
 
 	<style>
+  .label1 {
+     display: inline-block;
+     width: 1px;
+}
 	</style>
 
 </head>
@@ -18,9 +22,10 @@
 <div class="jumbotron text-center">
   <form class="form-inline">
     <div class="input-group">
-      <input type="text" class="form-control" size="50" placeholder="Enter Location" required>
-      <div class="input-group-btn" autocomplete="on">
-        <button type="button" class="btn"><span class="glyphicon glyphicon-search"></span></button>
+      <i class="fa fa-user icon"></i>
+      <input type="name" class="form-control CityTextBox" size="50" placeholder="Enter City" required>
+      <div class="input-group-btn">
+        <button type="button" class="btn SubmitBtn"><span class="glyphicon glyphicon-search"></span></button>
       </div>
     </div>
   </form>
@@ -64,7 +69,7 @@
   <div class="col-sm-2">
   <div class="thumbnail">
     <p><strong>Tue</strong></p>
-    <p>31' 2</p>
+    <p>31' 20</p>
     <img src="img/rain.png">
     <p>Rain</p>
   </div>
@@ -78,13 +83,22 @@
 <div class="container-fluid text-center bg-grey">
 <div class="row text-center">
 <div class="col-sm-12">
-	<h1><strong>26' C </strong><img src="img/sunny.png"></h1>
+	<h1 id="Temp"><strong>26' C </strong>
+  <img src="img/sunny.png">
+  </h1>
 	<div class="col-sm-6">
 		<p>Graph-time-dependent</p>
 	</div>
-	<div class="col-sm-6">
-		 <button type="button" class="btn" style="margin-right: 10%;width:30%;">Pressure<br>1013 hpa</button>
-		 <button type="button" class="btn" style="width: 30%;">Humidity<br>93%</button>
+	<div class="col-sm-6" style="padding-left: 10%;">
+  <div class="col-sm-3">
+     <p><strong>Pressure</strong></p>
+    <p id="Pressure">1013</p>
+  </div>
+  <div class="col-sm-3">
+     <p><strong>Humidity</strong></p>
+    <p id="Humidity">93</p>
+  </div>
+   
 	</div>
 </div>
 </div>
@@ -95,9 +109,14 @@
 <div class="row text-center">
 <div class="col-sm-12">
 	<div class="col-sm-6">
-			 <button type="button" class="btn" style="margin-right: 10%;width: 30%;">Sunrise<br>7:22am</button>
-		 <button type="button" class="btn" style="width: 30%">Sunset<br>6:12pm</button>
-		
+      <div class="col-sm-3">
+     <p><strong>Sunrise</strong></p>
+    <p id="SunriseTime">1013</p>
+  </div>
+  <div class="col-sm-3">
+     <p><strong>Sunset</strong></p>
+    <p id="SunsetTime">93</p>
+  </div>
 	</div>
 	<div class="col-sm-6">
 		<p>Graph-sun-dependent</p>
@@ -107,30 +126,43 @@
 </div>
 
 
-<div class="container">
-<div id="result" style="color:red">
-	<p>Json data</p>
-</div>
-</div>
-
-
-<script>
-
-$(document).ready(function(){
-
-   $.ajax({
-            url: "http://api.openweathermap.org/data/2.5/weather?q=Mumbai&APPID=f28e3325378a88306afe2af4f9631615",
-            type: 'GET',
-            dataType: 'json',
-            success: function(res) {
-               $('#result').html(res)
-            }
-        });
-
-})
-
-</script>
-
 
 </body>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+<script>
+$(".SubmitBtn" ).click(function() {
+var apiurl = 'http://api.openweathermap.org/data/2.5/weather?q=Mumbai';
+// var city = 'Mumbai';
+var apiKey = '&APPID=f28e3325378a88306afe2af4f9631615';
+var units = '&units=metric';
+var input; 
+
+
+
+
+$.ajax({
+      url: "http://api.openweathermap.org/data/2.5/weather?q=" + $(".CityTextBox").val() + apiKey + units,
+      // contentType: "application/json",
+      // dataType: 'json',
+      success: function(result){
+        // $('#result').html(res)
+        console.log(result.main)
+        console.log(result.main.humidity)
+
+        $("#Temp").text(result.main.temp)
+        $("#Pressure").text(result.main.pressure)
+        $("#Humidity").text(result.main.humidity)
+        $("#Mintemp").text(result.main.temp_min)
+        $("#Maxtemp").text(result.main.temp_max)
+
+      }
+  })
+
+// $( ".CityTextBox" ).each(function( index, element ) {
+  
+// });
+ });
+</script>
+
 </html>
