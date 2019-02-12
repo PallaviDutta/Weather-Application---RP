@@ -173,8 +173,10 @@ height:100%;
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
 <script>
+
+// Weather of Today
 $(".SubmitBtn" ).click(function() {
-var apiurl = 'http://api.openweathermap.org/data/2.5/weather?q=Mumbai';
+var apiurl = 'http://api.openweathermap.org/data/2.5/weather?q=';
 // var city = 'Mumbai';
 var apiKey = '&APPID=f28e3325378a88306afe2af4f9631615';
 var units = '&units=metric';
@@ -184,7 +186,7 @@ var input;
 
 
 $.ajax({
-  url: "http://api.openweathermap.org/data/2.5/weather?q=" + $(".CityTextBox").val() + apiKey + units,
+  url: apiurl + $(".CityTextBox").val() + apiKey + units,
   // contentType: "application/json",
   // dataType: 'json',
   success: function(result){
@@ -209,6 +211,10 @@ $.ajax({
 
 // });
 });
+
+
+
+
 </script>
 
 </html>
