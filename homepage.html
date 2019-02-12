@@ -34,9 +34,12 @@ padding: 0px;
 .mt{
 margin-top: -20px;
 }
+.mr{
+margin-right: 15%;
+}
 .box-color{
 background-color: #F0F8FF;
-width: 30%;
+width: 22% !important;
 height:100%;
 }
 .SubmitBtn {
@@ -48,7 +51,9 @@ background: transparent;
   .padding2-mb{
   	margin-right: -28px !important;
   } 
-
+  .mrm{
+  	margin-right: 50%;
+  }
 
 }
 
@@ -118,20 +123,30 @@ background: transparent;
 <div class="col-sm-6">
 <!-- 	<p>Graph-time-dependent</p> -->
 	<div id="chartContainer" style="height: 200px; max-width: 900px; margin: 0px auto;"></div>
-</div>
+</div><br>
 
 
-<div class="col-sm-6" style="padding-left: 10%;">
-<div class="col-sm-3 box-color" style="margin-right: 10%;">
+<!-- <div class="col-sm-6" style="padding-left: 10%;">
+<div class="col-sm-3 box-color" style="margin-right: 15%;">
  <p><strong>Pressure</strong></p>
  <span id="Pressure">1013</span><span> hpa</span>
 </div>
-<div class="col-sm-3 box-color">
+<div class="col-sm-3 box-color"3
+  !important<p><strong>Humidity</strong></p>
+<span id="Humidity">93</span><span> %</span>
+</div>
+</div> -->
+
+<div class="col-sm-6">
+<div style="width: 20%;display: inline-block;margin-left: 0%;padding-left: 0%;" class="box-color mr mrm">
+ <p><strong>Pressure</strong></p>
+ <span id="Pressure">1013</span><span> hpa</span>
+</div>
+<div style="width: 20%;display: inline-block;" class="box-color">
  <p><strong>Humidity</strong></p>
 <span id="Humidity">93</span><span> %</span>
 </div>
 </div>
-
 
 </div>
 </div>
@@ -141,16 +156,16 @@ background: transparent;
 <div class="row text-center">
 <div class="col-sm-12">
 <div class="col-sm-6">
-  <div class="col-sm-3">
+  <div style="width: 20%;display: inline-block;margin-left: 0%;padding-left: 0%;" class="mr mrm">
  <p><strong>Sunrise</strong></p>
 <span id="Sunrise">7:22</span><span>am</span>
 </div>
-<div class="col-sm-3">
+<div style="width: 20%;display: inline-block;">
  <p><strong>Sunset</strong></p>
  <span id="Sunset">6:12</span><span>pm</span>
 </div>
 </div>
-<div class="col-sm-6">
+<div class="col-sm-6" style="margin-top: 2%;">
 	<p>Graph-sun-dependent</p>
 </div>
 </div>
@@ -195,6 +210,7 @@ $.ajax({
     $("#Pressure").text(result.main.pressure)
     $("#Humidity").text(result.main.humidity)
     $("#Sunrise").text(result.sys.sunrise)
+    console.log(typeof(result.sys.sunrise))
     $("Sunset").text(result.sys.sunset)
 
   }
