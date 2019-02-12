@@ -42,6 +42,17 @@ height:100%;
 .SubmitBtn {
 background: transparent;
 }
+
+/*mobile*/
+@media only screen and (max-width: 768px) {
+  .padding2-mb{
+  	margin-right: -28px !important;
+  } 
+
+
+}
+
+
 </style>
 
 </head>
@@ -58,34 +69,34 @@ background: transparent;
                 </input>
             </div>
         </form>
-    </div>
+    </div><br>
 
 <div class="flex-container">
-<div class="padding2">
+<div class="padding2 padding2-mb">
 <p class="mt"><strong>Fri</strong></p>
 <p id="TempDay1" class="mt"><span>28</span><span>&#xb0</span><span > 19</span><span>&#xb0</span></p>
 <p class="mt"><img src="img/sunny.png"></p>
 <p class="mt">Sunny</p>
 </div>
-<div class="padding2">
+<div class="padding2 padding2-mb">
 <p class="mt"><strong>Sat</strong></p>
 <p id="TempDay2" class="mt"><span>29</span><span>&#xb0</span><span > 21</span><span>&#xb0</span></p>
 <p class="mt"><img src="img/sunny.png"></p>
 <p class="mt">Sunny</p>
 </div>
-<div class="padding2">
+<div class="padding2 padding2-mb">
 <p class="mt"><strong>Sun</strong></p>
 <p id="TempDay3" class="mt"><span>29</span><span>&#xb0</span><span > 21</span><span>&#xb0</span></p>
 <p class="mt"><img src="img/cloudy.png"></p>
 <p class="mt">Cloudy</p>
 </div>  
-<div class="padding2">
+<div class="padding2 padding2-mb">
 <p class="mt"><strong>Mon</strong></p>
 <p id="TempDay4" class="mt"><span>30</span><span>&#xb0</span><span > 20</span><span>&#xb0</span></p>
 <p class="mt"><img src="img/sunny.png"></p>
 <p class="mt">Sunny</p>
 </div>
-<div class="padding2">
+<div class="padding2 padding2-mb">
 <p class="mt"><strong>Tue</strong></p>
 <p id="TempDay5" class="mt"><span>31</span><span>&#xb0</span><span > 2</span><span>&#xb0</span></p>
 <p class="mt"><img src="img/rain.png"></p>
@@ -108,6 +119,8 @@ background: transparent;
 <!-- 	<p>Graph-time-dependent</p> -->
 	<div id="chartContainer" style="height: 200px; max-width: 900px; margin: 0px auto;"></div>
 </div>
+
+
 <div class="col-sm-6" style="padding-left: 10%;">
 <div class="col-sm-3 box-color" style="margin-right: 10%;">
  <p><strong>Pressure</strong></p>
@@ -118,6 +131,8 @@ background: transparent;
 <span id="Humidity">93</span><span> %</span>
 </div>
 </div>
+
+
 </div>
 </div>
 </div>
@@ -142,6 +157,9 @@ background: transparent;
 </div>
 </div>
 <br><br><br>
+
+
+
 
 
 
