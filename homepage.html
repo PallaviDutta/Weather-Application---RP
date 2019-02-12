@@ -182,7 +182,7 @@ $.ajax({
   }
 })
 
-console.log("Sujeet")
+
 // 5 days weather api
 var apiurl1 = 'http://api.openweathermap.org/data/2.5/forecast?q=';
 
@@ -193,27 +193,28 @@ $.ajax({
     // console.log(result.main)
     // console.log(result.main.humidity)
 
-
+    var count=0;
     for (var i = 0; i < result.list.length; i++) {
     var counter = result.list[i];
     if(counter.dt_txt.includes("09:00:00"))
     {
+    	count++;
     	var temp = counter.main.temp;
         // console.log(temp);
-        console.log(i);
-        if(i==7){
+        console.log(count);
+        if(count==1){
         $("#TempDay1").text(temp)
         }
-        if(i==15){
+        if(count==2){
         $("#TempDay2").text(temp)
         }
-        if(i==23){
+        if(count==3){
         $("#TempDay3").text(temp)
         }
-        if(i==31){
+        if(count==4){
         $("#TempDay4").text(temp)
         }
-        if(i==39){
+        if(count==5){
         $("#TempDay5").text(temp)
         }
     }}
