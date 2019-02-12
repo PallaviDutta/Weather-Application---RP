@@ -5,7 +5,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
-
+<script src="https://canvasjs.com/assets/script/canvasjs.min.js"> </script>
 
 
 <style>
@@ -30,7 +30,7 @@ font-size: 15px;
 }
 
 .padding1{
-padding: 5%;
+padding: 3%;
 }
 .padding2{
 margin-right: 5%;
@@ -87,7 +87,7 @@ height:100%;
 <div class="flex-container">
 <div class="padding2">
 <p class="mt"><strong>Fri</strong></p>
-<p class="mt"><span>28</span><span>&#xb0</span><span > 19</span><span>&#xb0</span></p>
+<p id="Temp1" class="mt"><span>28</span><span>&#xb0</span><span > 19</span><span>&#xb0</span></p>
 <p class="mt"><img src="img/sunny.png"></p>
 <p class="mt">Sunny</p>
 </div>
@@ -120,19 +120,20 @@ height:100%;
 <br><br>
 
 
-<div class="container-fluid text-center bg-grey">
+<div class="container-fluid text-center bg-grey mt">
 <div class="row text-center">
 <div class="col-sm-12">
 		<h1>
 		<span id="Temp">26</span>
 	    <span>&#8451</span>
 	    <span><img src="img/sunny.png"></span>
-	    </h1><br><br><br>
+	    </h1><br><br>
 <div class="col-sm-6">
-	<p>Graph-time-dependent</p>
+<!-- 	<p>Graph-time-dependent</p> -->
+	<div id="chartContainer" style="height: 200px; max-width: 900px; margin: 0px auto;"></div>
 </div>
 <div class="col-sm-6" style="padding-left: 10%;">
-<div class="col-sm-3 box-color" style="margin-right: 2%;">
+<div class="col-sm-3 box-color" style="margin-right: 10%;">
  <p><strong>Pressure</strong></p>
  <span id="Pressure">1013</span><span> hpa</span>
 </div>
@@ -140,14 +141,12 @@ height:100%;
  <p><strong>Humidity</strong></p>
 <span id="Humidity">93</span><span> %</span>
 </div>
+</div>
+</div>
+</div>
+</div>
 
-</div>
-</div>
-</div>
-</div>
-<br><br><br>
-
-<div class="container-fluid text-center bg-grey">
+<div class="container-fluid text-center bg-grey" style="padding-top: 5%">
 <div class="row text-center">
 <div class="col-sm-12">
 <div class="col-sm-6">
@@ -166,6 +165,7 @@ height:100%;
 </div>
 </div>
 </div>
+<br><br><br>
 
 
 
@@ -180,7 +180,7 @@ var apiurl = 'http://api.openweathermap.org/data/2.5/weather?q=';
 // var city = 'Mumbai';
 var apiKey = '&APPID=f28e3325378a88306afe2af4f9631615';
 var units = '&units=metric';
-var input; 
+ 
 
 
 
@@ -199,21 +199,57 @@ $.ajax({
     $("#Temp").text(result.main.temp)
     $("#Pressure").text(result.main.pressure)
     $("#Humidity").text(result.main.humidity)
-    $("#Mintemp").text(result.main.temp_min)
-    $("#Maxtemp").text(result.main.temp_max)
     $("#Sunrise").text(result.sys.sunrise)
     $("Sunset").text(result.sys.sunset)
 
   }
 })
 
-// $( ".CityTextBox" ).each(function( index, element ) {
 
-// });
+var apiurl1 = 'http://api.openweathermap.org/data/2.5/forecast?q';
+
+$.ajax({
+  url: apiurl1 + $(".CityTextBox").val() + apiKey + units,
+  success: function(result){
+    console.log(result)
+    console.log(result.main)
+    console.log(result.main.humidity)
+
+
+    $("#Temp1").text(result.list.main.temp)
+
+  }
+})
+
+
 });
 
 
+window.onload = function () {
+var chart = new CanvasJS.Chart("chartContainer", {
+	theme: "light2", // "light2", "dark1", "dark2"
+	animationEnabled: true, // change to true		
+	title:{
+		text: " "
+	},
+	data: [
+	{
+		// Change type to "bar", "area", "spline", "pie",etc.
+		type: "spline",
+		dataPoints: [
+			{ label: "21°", y: 10  },
+			{ label: "22°", y: 15  },
+			{ label: "24°", y: 25  },
+			{ label: "25°", y: 30  },
+			{ label: "29°", y: 28  },
+			{ label: "28°", y: 28  },
+		]
+	}
+	]
+});
+chart.render();
 
+}
 
 </script>
 
