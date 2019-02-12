@@ -75,19 +75,19 @@ background: transparent;
 </div>
 <div class="padding2">
 <p class="mt"><strong>Sun</strong></p>
-<p id="TempDay3"class="mt"><span>29</span><span>&#xb0</span><span > 21</span><span>&#xb0</span></p>
+<p id="TempDay3" class="mt"><span>29</span><span>&#xb0</span><span > 21</span><span>&#xb0</span></p>
 <p class="mt"><img src="img/cloudy.png"></p>
 <p class="mt">Cloudy</p>
 </div>  
 <div class="padding2">
 <p class="mt"><strong>Mon</strong></p>
-<p id="TempDay4"class="mt"><span>30</span><span>&#xb0</span><span > 20</span><span>&#xb0</span></p>
+<p id="TempDay4" class="mt"><span>30</span><span>&#xb0</span><span > 20</span><span>&#xb0</span></p>
 <p class="mt"><img src="img/sunny.png"></p>
 <p class="mt">Sunny</p>
 </div>
 <div class="padding2">
 <p class="mt"><strong>Tue</strong></p>
-<p id="TempDay5"class="mt"><span>31</span><span>&#xb0</span><span > 2</span><span>&#xb0</span></p>
+<p id="TempDay5" class="mt"><span>31</span><span>&#xb0</span><span > 2</span><span>&#xb0</span></p>
 <p class="mt"><img src="img/rain.png"></p>
 <p class="mt">Rain</p>
 </div>
@@ -126,7 +126,7 @@ background: transparent;
 <div class="row text-center">
 <div class="col-sm-12">
 <div class="col-sm-6">
-  <div class="col-sm-3" style="margin-right: 50%">
+  <div class="col-sm-3">
  <p><strong>Sunrise</strong></p>
 <span id="Sunrise">7:22</span><span>am</span>
 </div>
@@ -168,9 +168,9 @@ $.ajax({
   // dataType: 'json',
   success: function(result){
     // $('#result').html(res)
-    console.log(result)
-    console.log(result.main)
-    console.log(result.main.humidity)
+    // console.log(result)
+    // console.log(result.main)
+    // console.log(result.main.humidity)
 
 
     $("#Temp").text(result.main.temp)
@@ -182,43 +182,41 @@ $.ajax({
   }
 })
 
+console.log("Sujeet")
 // 5 days weather api
-var apiurl1 = 'http://api.openweathermap.org/data/2.5/forecast?q';
+var apiurl1 = 'http://api.openweathermap.org/data/2.5/forecast?q=';
 
 $.ajax({
   url: apiurl1 + $(".CityTextBox").val() + apiKey + units,
   success: function(result){
-    console.log(result)
-    console.log(result.main)
-    console.log(result.main.humidity)
+    // console.log(result)
+    // console.log(result.main)
+    // console.log(result.main.humidity)
+
 
     for (var i = 0; i < result.list.length; i++) {
     var counter = result.list[i];
     if(counter.dt_txt.includes("09:00:00"))
     {
     	var temp = counter.main.temp;
-        console.log(temp);
-
-        if(i==1){
-            $("#TempDay1").text(temp)	
+        // console.log(temp);
+        console.log(i);
+        if(i==7){
+        $("#TempDay1").text(temp)
         }
-    	if(i==2){
-    		$("#TempDay2").text(temp)
-    	}
-        if(i==3){
-        	$("#TempDay3").text(temp)
+        if(i==15){
+        $("#TempDay2").text(temp)
         }
-        if(i==4){
-        	$("#TempDay4").text(temp)
+        if(i==23){
+        $("#TempDay3").text(temp)
         }
-    	if(i==5){
-    		$("#TempDay5").text(temp)
-    	}
-        
+        if(i==31){
+        $("#TempDay4").text(temp)
+        }
+        if(i==39){
+        $("#TempDay5").text(temp)
+        }
     }}
-    
-    
-
   }
 })
 
