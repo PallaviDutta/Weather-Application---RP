@@ -9,18 +9,11 @@
 
 
 <style>
-/*.column {
-float: left;
-width: 10%;
-padding: 10%;
-}*/
-
 .flex-container {
 display: flex;
 flex-wrap: wrap;
 justify-content: center;
 }
-
 .flex-container > div {
 background-color: #fff;
 width: 100px;
@@ -28,7 +21,6 @@ text-align: center;
 line-height: 40px;
 font-size: 15px;
 }
-
 .padding1{
 padding: 3%;
 }
@@ -36,40 +28,24 @@ padding: 3%;
 margin-right: 5%;
 }
 p { 
-	margin: 0px;
-	padding: 0px;
+margin: 0px;
+padding: 0px;
 }
 .mt{
-	margin-top: -20px;
+margin-top: -20px;
 }
-
 .box-color{
 background-color: #F0F8FF;
 width: 30%;
 height:100%;
 }
 .SubmitBtn {
-    background: transparent;
+background: transparent;
 }
-
-
 </style>
 
 </head>
 <body>
-
-
-<!-- <div class="padding1 text-center">
-<form class="form-inline">
-<div class="input-group">
-  <input type="name" class="form-control CityTextBox" size="50" placeholder="Enter City" required>
-  <div class="input-group-btn">
-    <button type="button" class="btn SubmitBtn"><span class="glyphicon glyphicon-search"></span></button>
-  </div>
-</div>
-</form>
-</div> -->
-
 
     <div class="padding1 text-center">
         <form class="form-inline">
@@ -87,7 +63,7 @@ height:100%;
 <div class="flex-container">
 <div class="padding2">
 <p class="mt"><strong>Fri</strong></p>
-<p id="Temp1" class="mt"><span>28</span><span>&#xb0</span><span > 19</span><span>&#xb0</span></p>
+<p id="TempDay1" class="mt"><span>28</span><span>&#xb0</span><span > 19</span><span>&#xb0</span></p>
 <p class="mt"><img src="img/sunny.png"></p>
 <p class="mt">Sunny</p>
 </div>
@@ -170,20 +146,21 @@ height:100%;
 
 
 </body>
+
+
+
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
 <script>
 
-// Weather of Today
+// Weather of Today Start of SubmitBtn
 $(".SubmitBtn" ).click(function() {
 var apiurl = 'http://api.openweathermap.org/data/2.5/weather?q=';
 // var city = 'Mumbai';
 var apiKey = '&APPID=f28e3325378a88306afe2af4f9631615';
 var units = '&units=metric';
  
-
-
-
+// Weather Today
 
 $.ajax({
   url: apiurl + $(".CityTextBox").val() + apiKey + units,
@@ -205,7 +182,7 @@ $.ajax({
   }
 })
 
-
+// 5 days weather api
 var apiurl1 = 'http://api.openweathermap.org/data/2.5/forecast?q';
 
 $.ajax({
@@ -216,7 +193,16 @@ $.ajax({
     console.log(result.main.humidity)
 
 
-    $("#Temp1").text(result.list.main.temp)
+    for (var i = 0; i < result.list.length; i++) {
+    var counter = result.list[i];
+    if(counter.dt_txt.includes("09:00:00"))
+    {
+    	var temp = counter.main.temp;
+        console.log(temp);
+        $("#TempDay1").text(temp)
+    }}
+    
+    
 
   }
 })
@@ -224,7 +210,9 @@ $.ajax({
 
 });
 
+// End of SubmitBtn
 
+// Temp vs time graph
 window.onload = function () {
 var chart = new CanvasJS.Chart("chartContainer", {
 	theme: "light2", // "light2", "dark1", "dark2"
